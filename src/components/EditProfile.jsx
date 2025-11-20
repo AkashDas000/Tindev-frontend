@@ -8,8 +8,8 @@ import { addUser } from "../utils/userSlice";
 const EditProfile = ({ user }) => {
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
-  const [age, setAge] = useState(user.age);
-  const [gender, setGender] = useState(user.gender);
+  const [age, setAge] = useState(user.age || "");
+  const [gender, setGender] = useState(user.gender || "");
   const [photoURL, setPhotoURL] = useState(user.photoURL);
   const [about, setAbout] = useState(user.about);
   const [error, setError] = useState("");
@@ -28,8 +28,7 @@ const EditProfile = ({ user }) => {
       setShowToast(true);
       setTimeout(()=>{
         setShowToast(false)
-      },300
-    
+      },3000
     )
     } catch (error) {
       setError(error.response.data);
@@ -108,7 +107,7 @@ const EditProfile = ({ user }) => {
       <UserCard user={{ firstName, lastName, age, about, photoURL, gender }} />
       {showToast &&<div className="toast toast-top toast-center">
         <div className="alert alert-success">
-          <span>Message sent successfully.</span>
+          <span>Update Completed !!</span>
         </div>
       </div>}
     </div>
